@@ -2,7 +2,7 @@
 
 * Tint Shader - A shader that let's you change the colors of the red, green and blue channels in a texture.
 
-![Pre tint texture](Readme-Images/Tint-1.png?raw=true "Tint 1") gets tinted to ![Post tint texture](Readme-Images/Tint-2.png?raw=true "Tint 2")
+![Pre tint texture](Readme-Images/Tint-2.png?raw=true "Tint 1") gets tinted to ![Post tint texture](Readme-Images/Tint-1.png?raw=true "Tint 2")
 
 
 * Resize Shader - A shader that let's you resize the texture. You can set the x and y axis scale, and the alignment so the scale happens from the center, top, right, bottom, or left side.
@@ -17,17 +17,17 @@
 
 * Outline Shader - A shader that let's you add an outline around an image. You can set the outline color and the width of the outline. Similar to the "stroke" feature in Photoshop.
 
-![Pre outline texture](Readme-Images/Outline-1.png?raw=true "Tint 1") + a black outline is added ![Post outline texture](Readme-Images/Outline-2.png?raw=true "Tint 2")
+![Pre outline texture](Readme-Images/Outline-1.png?raw=true "Tint 1") black outline is added ![Post outline texture](Readme-Images/Outline-2.png?raw=true "Tint 2")
 
 
 * Dual Texture Tint - A tint shader that let's you mix two different tint textures.
 
-![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") texture and pattern ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") combined and tinted to ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
+![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") combined and tinted ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
 
 
 * Dual Texture Atlas Tint - A tint shader that let's you mix two different tint textures, both imported from a texture atlas.
 
-![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") texture and pattern ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") combined and tinted to ![Combo tint texture](Readme-Images/Dual-Atlas-Texture.png?raw=true "Combo")
+![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") combined and tinted ![Combo tint texture](Readme-Images/Dual-Texture-Atlas.png?raw=true "Combo")
 
 # Tint Shader
 This shader let's you apply a different color to the red, green and blue color channels.
@@ -37,6 +37,9 @@ In the material you can specify which color to replace each of the RGB channels 
 
 
 # Resize Shader
+This shader let's you resize a texture. You can specify a different scale for the x and y axis, plus you can set the scaling alignment.
+![Resize material settings](Readme-Images/Resize-Material-Settings.png?raw=true "Resize material settings")
+
 
 # Resize Atlas Shader
 
