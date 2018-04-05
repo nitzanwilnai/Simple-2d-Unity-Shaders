@@ -22,14 +22,19 @@
 
 * Dual Texture Tint - A tint shader that let's you mix two different tint textures.
 
-![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") + ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") -> ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
+![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") texture and pattern ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") combined and tinted to ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
 
 
 * Dual Texture Atlas Tint - A tint shader that let's you mix two different tint textures, both imported from a texture atlas.
 
-![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") + ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") -> ![Combo tint texture](Readme-Images/Dual-Atlas-Texture.png?raw=true "Combo")
+![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") texture and pattern ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") combined and tinted to ![Combo tint texture](Readme-Images/Dual-Atlas-Texture.png?raw=true "Combo")
 
 # Tint Shader
+This shader let's you apply a different color to the red, green and blue color channels.
+
+In the material you can specify which color to replace each of the RGB channels with:
+![Tint material settings](Readme-Images/Tint-Material-Settings.png?raw=true "Tint Material Settings")
+
 
 # Resize Shader
 
