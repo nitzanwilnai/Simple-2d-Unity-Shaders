@@ -1,0 +1,106 @@
+﻿Shader "Unlit/fish_shader"
+{
+    Properties
+    {
+        // we have removed support for texture tiling/offset,
+        // so make them not be displayed in material inspector
+        [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _PatternTex ("Texture", 2D) = "white" {}
+ 		_ColorRedTint ("Red Color Tint", Color) = (1,1,1)
+		_ColorGreenTint ("Green Color Tint", Color) = (1,1,1)
+		_ColorBlueTint ("Blue Color Tint", Color) = (1,1,1)
+		_PatternAtlasTiles("Pattern Atlas Location", Vector) = (0, 0, 0, 0)
+    }
+    SubShader
+    {
+		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
+		LOD 100
+
+		ZWrite Off
+		Blend SrcAlpha OneMinusSrcAlpha 
+
+        Pass
+        {
+            CGPROGRAM
+			// Upgrade NOTE: excluded shader from DX11; has structs without semantics (struct appdata members uv2_MainTex2)
+			#pragma exclude_renderers d3d11
+            // use "vert" function as the vertex shader
+            #pragma vertex vert
+            // use "frag" function as the pixel (fragment) shader
+            #pragma fragment frag
+
+             #include "UnityCG.cginc"
+
+            // vertex shader inputs
+            struct appdata
+            {
+                float4 vertex : POSITION; // vertex position
+                float2 uv_MainTex : TEXCOORD0;
+                float2 uv2_PatternTex : TEXCOORD1;
+            };
+
+            // vertex shader outputs ("vertex to fragment")
+            struct v2f
+            {
+                float4 vertex : SV_POSITION; // clip space position
+                half2 texCoord : TEXCOORD0; // texture coordinate
+                half2 texCoord2: TEXCOORD1;
+            };
+
+            // texture we will sample
+            sampler2D _MainTex;
+            sampler2D _PatternTex;
+            fixed3 _ColorRedTint;
+            fixed3 _ColorGreenTint;
+            fixed3 _ColorBlueTint;
+            fixed4 _PatternAtlasTiles;
+
+            float4 _MainTex_ST;
+            float4 _MainTex_TexelSize;
+
+            float4 _PatternTex_ST;
+            float4 _PatternTex_TexelSize;
+
+            // vertex shader
+            v2f vert (appdata v)
+            {
+                 v2f o;
+                 o.vertex = UnityObjectToClipPos(v.vertex);
+                 o.texCoord = TRANSFORM_TEX(v.uv_MainTex, _MainTex);
+                 o.texCoord2 = TRANSFORM_TEX(v.uv2_PatternTex, _PatternTex);
+                 return o;
+            }
+
+            // pixel shader; returns low precision ("fixed4" type)
+            // color ("SV_Target" semantic)
+            fixed4 frag (v2f pix) : SV_Target
+            {
+	            float tilesWide = _PatternAtlasTiles.z;
+	            float tilesHigh = _PatternAtlasTiles.w;
+            	float tileStartX = floor(pix.texCoord.x * tilesWide) / tilesWide;
+            	float tileStartY = floor(pix.texCoord.y * tilesHigh) / tilesHigh;
+            	float tileWidth = 1 / _PatternAtlasTiles.z;
+            	float tileHeight = 1 / _PatternAtlasTiles.w;
+
+                // sample texture and return it
+				fixed4 col = tex2D(_MainTex, pix.texCoord);
+                fixed4 newColor = col;
+
+            	float2 patternCoord = pix.texCoord;
+            	patternCoord.x += (_PatternAtlasTiles.x * tileWidth - tileStartX);
+            	patternCoord.y += (_PatternAtlasTiles.y * tileHeight - tileStartY);
+	            fixed4 pattern = tex2D(_PatternTex, patternCoord);
+
+                if(newColor.a != 0) {
+
+	                fixed3 tintedColor = col.r * _ColorRedTint + col.g * _ColorGreenTint + col.b * _ColorBlueTint;
+	                newColor.rgb = pattern.a != 0 ? (pattern.r * _ColorRedTint + pattern.g * _ColorGreenTint + pattern.b * _ColorBlueTint) : tintedColor.rgb;
+				}
+
+                return newColor;
+            }
+            ENDCG
+        }
+
+    }
+}
