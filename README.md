@@ -33,17 +33,30 @@
 This shader let's you apply a different color to the red, green and blue color channels.
 
 In the material you can specify which color to replace each of the RGB channels with:
+
 ![Tint material settings](Readme-Images/Tint-Material-Settings.png?raw=true "Tint Material Settings")
 
 
 # Resize Shader
 This shader let's you resize a texture. You can specify a different scale for the x and y axis, plus you can set the scaling alignment.
+
 ![Resize material settings](Readme-Images/Resize-Material-Settings.png?raw=true "Resize material settings")
 
 
 # Resize Atlas Shader
+This shader let's you resize a texture that was imported from a texture atlas.
+
+Becuase the UV coordinates are different for each tile, we need to know how many tiles wide and high the source atlas was. It is theoretically possible to get this information from the _MainTex_ST variable that is automagically filled by Unity, but I could not get it to work. Instead the developer needs to specify the tile size to the material.
+
+![Resize atlas settings](Readme-Images/Resize-Atlas-Settings.png?raw=true "Resize atlas settings")
 
 # Outline Shader
+This shader adds a stroke effect around objects. Users can specify the color of the stroke in the material. The size (thickness) of the stroke is hard coded into the shader and needs to be modified there. That is becuase shaders are pre-compiled and so any variables that control the size of a loop (we loop according to the thickness of the stroke in the shader) need to be compiled into the shader.
+
+![Outline settings](Readme-Images/Outline-Settings.png?raw=true "Outline settings")
+
+The shader works by checking a circle of pixels around the current pixel. The shader starts by checking pixels from radius 1, and then incrementing the radius until the desired stroke width is reached. If an alpha pixel is encountered, the loop exist early and we color this pixel the color of the stroke color. If we are at almost the maximum distance from an alpha pixel, we smoothly alpha the inside of our stroke by combining a fraction of the stroke color with the original pixel color.
+
 
 # Dual Texture Tint
 
