@@ -55,12 +55,18 @@ This shader adds a stroke effect around objects. Users can specify the color of 
 
 ![Outline settings](Readme-Images/Outline-Settings.png?raw=true "Outline settings")
 
-The shader works by checking a circle of pixels around the current pixel. The shader starts by checking pixels from radius 1, and then incrementing the radius until the desired stroke width is reached. If an alpha pixel is encountered, the loop exist early and we color this pixel the color of the stroke color. If we are at almost the maximum distance from an alpha pixel, we smoothly alpha the inside of our stroke by combining a fraction of the stroke color with the original pixel color.
+The shader works by checking a circle of pixels around the current pixel. The shader starts by checking pixels from radius 1, and then incrementing the radius until the desired stroke width is reached. If an alpha pixel is encountered, the loop exits early and we color this pixel the color of the stroke color. If we are at almost the maximum distance from an alpha pixel, we smoothly alpha the inside of our stroke by combining a fraction of the stroke color with the original pixel color.
 
 
 # Dual Texture Tint
 
+![Dual texture tint settings](Readme-Images/Dual-Texture-Settings.png?raw=true "Dual texture tint settings")
+
+
 # Dual Texture Atlas Tint
+
+![Dual texture atlas tint settings](Readme-Images/Dual-Texture-Atlas-Settings.png?raw=true "Dual texture atlas tint settings")
+
 
 
 Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
