@@ -55,15 +55,29 @@ This shader adds a stroke effect around objects. Users can specify the color of 
 
 ![Outline settings](Readme-Images/Outline-Settings.png?raw=true "Outline settings")
 
-The shader works by checking a circle of pixels around the current pixel. The shader starts by checking pixels from radius 1, and then incrementing the radius until the desired stroke width is reached. If an alpha pixel is encountered, the loop exits early and we color this pixel the color of the stroke color. If we are at almost the maximum distance from an alpha pixel, we smoothly alpha the inside of our stroke by combining a fraction of the stroke color with the original pixel color.
+The shader works by checking a circle of pixels around the current pixel. The shader starts by checking pixels from radius 1, and then incrementing the radius until the desired stroke width is reached. If an alpha pixel is encountered, the loop exits early and we color this pixel the color of the stroke color. If we are at almost the maximum distance from an alpha pixel, we smoothly anti-alias the inside of our stroke by combining a fraction of the stroke color with the original pixel color.
 
 
 # Dual Texture Tint
+
+This shader combines and tints two textures. It let's you apply different patterns on top of a texture, plus to tint them both.
 
 ![Dual texture tint settings](Readme-Images/Dual-Texture-Settings.png?raw=true "Dual texture tint settings")
 
 
 # Dual Texture Atlas Tint
+
+This shader is identical to the non-atlas version, except becasue UV coordinates are shared between textures, the developer needs to specify the tile coordinates of the pattern they want to apply from the second texture. Both textures need to have the same tile numbers. 
+
+Example atlas texture:
+![Atlas](Readme-Images/atlas_texture.png?raw=true "Atlas texture")
+
+Example atlas of patterns:
+![Pattern atlas](Readme-Images/atlas_pattern.png?raw=true "Atlas pattern")
+
+If you want the top left pattern, you need to specify tile position (0,0). 
+
+if you want the bottom left pattern, you can need to specify tile position (0,1).
 
 ![Dual texture atlas tint settings](Readme-Images/Dual-Texture-Atlas-Settings.png?raw=true "Dual texture atlas tint settings")
 
