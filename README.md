@@ -13,7 +13,23 @@
 ![Pre outline texture](Readme-Images/Outline-1.png?raw=true "Tint 1") -> ![Post outline texture](Readme-Images/Outline-2.png?raw=true "Tint 2")
 
 * Dual Texture Tint - A tint shader that let's you mix two different tint textures.
+![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") + ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") -> ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
+
 * Dual Texture Atlas Tint - A tint shader that let's you mix two different tint textures, both imported from a texture atlas.
+![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") + ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") -> ![Combo tint texture](Readme-Images/Dual-Atlas-Texture.png?raw=true "Combo")
+
+# Tint Shader
+
+# Resize Shader
+
+# Resize Atlas Shader
+
+# Outline Shader
+
+# Dual Texture Tint
+
+# Dual Texture Atlas Tint
+
 
 Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
 Sprite Mode -> Mesh Type -> Full Rect
