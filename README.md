@@ -79,11 +79,13 @@ If you want the top left pattern, you need to specify tile position (0,0).
 
 if you want the bottom left pattern, you can need to specify tile position (0,1).
 
+![Dual texture atlas script](Readme-Images/Dual-Texture-Atlas-Script.png?raw=true "Dual texture atlas tint script")
+
 ![Dual texture atlas tint settings](Readme-Images/Dual-Texture-Atlas-Settings.png?raw=true "Dual texture atlas tint settings")
 
 
 
 Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
 Sprite Mode -> Mesh Type -> Full Rect
-![Pre tint texture](Readme-Images/tint1.png?raw=true "Tint 1")
+![Full rect material](Readme-Images/Full-Rect-Material.png?raw=true "Full rect material")
 
