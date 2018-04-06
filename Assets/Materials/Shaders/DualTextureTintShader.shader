@@ -1,5 +1,6 @@
 ﻿Shader "Unlit/fish_shader"
 {
+	// these are variables you can pass to the shader from the inspector or from a script
     Properties
     {
         // we have removed support for texture tiling/offset,
@@ -10,6 +11,8 @@
 		_ColorGreenTint ("Green Color Tint", Color) = (1,1,1)
 		_ColorBlueTint ("Blue Color Tint", Color) = (1,1,1)
     }
+
+    // actual shader code begins here
     SubShader
     {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
@@ -46,13 +49,13 @@
                 half2 texCoord2: TEXCOORD1;
             };
 
-            // texture we will sample
-            sampler2D _MainTex;
-            sampler2D _PatternTex;
-            fixed3 _ColorRedTint;
+            sampler2D _MainTex; // primary texture
+            sampler2D _PatternTex; // secondary texture
+            fixed3 _ColorRedTint; // our color tints
             fixed3 _ColorGreenTint;
             fixed3 _ColorBlueTint;
 
+            // varibles filled by Unity automagically for each texture
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
 

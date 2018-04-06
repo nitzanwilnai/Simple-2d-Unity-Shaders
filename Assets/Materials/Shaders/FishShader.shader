@@ -14,6 +14,8 @@
 		_Align("Align? 0-None, 1-Top, 2-Right, 3-Bottom, 4-Left", float) = 0.0
 		_PatternAtlasTiles("Pattern Atlas Location", Vector) = (0, 0, 0, 0)
     }
+
+    // actual shader code begins here
     SubShader
     {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
@@ -61,6 +63,7 @@
             fixed  _Align;
             fixed4 _PatternAtlasTiles;
 
+            // varibles filled by Unity automagically
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
 

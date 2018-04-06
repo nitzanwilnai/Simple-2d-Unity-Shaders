@@ -1,5 +1,6 @@
 ﻿Shader "Unlit/fish_shader"
 {
+	// these are variables you can pass to the shader from the inspector or from a script
     Properties
     {
         // we have removed support for texture tiling/offset,
@@ -7,6 +8,8 @@
         [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
 		_ColorStroke ("Stroke Color", Color) = (1,1,1)
     }
+
+    // actual shader code begins here
     SubShader
     {
 		Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
@@ -42,10 +45,10 @@
                 half2 texCoord : TEXCOORD0; // texture coordinate
             };
 
-            // texture we will sample
-            sampler2D _MainTex;
-            fixed3 _ColorStroke;
+            sampler2D _MainTex; // texture we will sample
+            fixed3 _ColorStroke; // the color for the outline
 
+            // varibles filled by Unity automagically
             float4 _MainTex_ST;
             float4 _MainTex_TexelSize;
 
