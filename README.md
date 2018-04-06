@@ -1,5 +1,7 @@
 # Simple, 2d, Unity shaders
 
+A few simple, 2d unity shaders. A tint shader, resize shader, outline shader, and dual texture tint shader. Plus support for using textures from a texture atlas (messes with the UVs).
+
 
 * **Tint Shader** - A shader that let's you change the colors of the red, green and blue channels in a texture.
 
