@@ -1,11 +1,5 @@
 # Simple, 2d, Unity shaders
 
-* Tint Shader
-* Resize Shader
-* Resize Atlas Shader
-* Outline Shader
-* Dual Texture Tint
-* Dual Texture Atlas Tint
 
 * **Tint Shader** - A shader that let's you change the colors of the red, green and blue channels in a texture.
 
@@ -92,7 +86,8 @@ if you want the bottom left pattern, you can need to specify tile position (0,1)
 
 
 
-Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
+## Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
 Sprite Mode -> Mesh Type -> Full Rect
+
 ![Full rect material](Readme-Images/Full-Rect-Material.png?raw=true "Full rect material")
 
