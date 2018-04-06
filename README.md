@@ -1,31 +1,32 @@
 # Simple, 2d, Unity shaders
 
-* Tint Shader - A shader that let's you change the colors of the red, green and blue channels in a texture.
+
+* **Tint Shader** - A shader that let's you change the colors of the red, green and blue channels in a texture.
 
 ![Pre tint texture](Readme-Images/Tint-2.png?raw=true "Tint 1") gets tinted to ![Post tint texture](Readme-Images/Tint-1.png?raw=true "Tint 2")
 
 
-* Resize Shader - A shader that let's you resize the texture. You can set the x and y axis scale, and the alignment so the scale happens from the center, top, right, bottom, or left side.
+* **Resize Shader** - A shader that let's you resize the texture. You can set the x and y axis scale, and the alignment so the scale happens from the center, top, right, bottom, or left side.
 
 ![Pre resize texture](Readme-Images/Resize-1.png?raw=true "Tint 1") resized to ![Post resize texture](Readme-Images/Resize-2.png?raw=true "Tint 2")
 
 
-* Resize Atlas Shader - A shader that let's you resize textures that are imported from a texture atlas.
+* **Resize Atlas Shader** - A shader that let's you resize textures that are imported from a texture atlas.
 
 ![Pre resize atlas texture](Readme-Images/Resize-Atlas-1.png?raw=true "Tint 1") resized to ![Post resize atlas texture](Readme-Images/Resize-Atlas-2.png?raw=true "Tint 2")
 
 
-* Outline Shader - A shader that let's you add an outline around an image. You can set the outline color and the width of the outline. Similar to the "stroke" feature in Photoshop.
+* **Outline Shader** - A shader that let's you add an outline around an image. You can set the outline color and the width of the outline. Similar to the "stroke" feature in Photoshop.
 
 ![Pre outline texture](Readme-Images/Outline-1.png?raw=true "Tint 1") black outline is added ![Post outline texture](Readme-Images/Outline-2.png?raw=true "Tint 2")
 
 
-* Dual Texture Tint - A tint shader that let's you mix two different tint textures.
+* **Dual Texture Tint** - A tint shader that let's you mix two different tint textures.
 
 ![Dual texture](Readme-Images/test_texture2.png?raw=true "Texture") ![Pattern texture](Readme-Images/test_pattern.png?raw=true "Pattern") combined and tinted ![Combo tint texture](Readme-Images/Dual-Texture.png?raw=true "Combo")
 
 
-* Dual Texture Atlas Tint - A tint shader that let's you mix two different tint textures, both imported from a texture atlas.
+* **Dual Texture Atlas Tint** - A tint shader that let's you mix two different tint textures, both imported from a texture atlas.
 
 ![Dual texture](Readme-Images/atlas_texture.png?raw=true "Texture") ![Pattern texture](Readme-Images/atlas_pattern.png?raw=true "Pattern") combined and tinted ![Combo tint texture](Readme-Images/Dual-Texture-Atlas.png?raw=true "Combo")
 
@@ -79,13 +80,36 @@ If you want the top left pattern, you need to specify tile position (0,0).
 
 if you want the bottom left pattern, you can need to specify tile position (0,1).
 
+This shader requires a script to set some of the shader values. You need to specify the pattern (second) atlas texture and which tile to use from the atlas. Pass the Sprite the shader material is on, the pattern texture, and which tile you want to your script:
+```
+	public Vector4 patternTiles;
+	public GameObject sprite;
+	public Texture2D patternTexture;
+```
+
 ![Dual texture atlas script](Readme-Images/Dual-Texture-Atlas-Script.png?raw=true "Dual texture atlas tint script")
+
+Then somewhere in your script (I used Start()) pass the values on to the shader:
+
+```
+		SpriteRenderer renderer = sprite.GetComponent<SpriteRenderer> (); // grab the SpriteRenderer from your Sprite game object
+		if (patternTexture) {
+			renderer.material.SetTexture ("_PatternTex", patternTexture); // pass the pattern texture to the shader
+		}
+		renderer.material.SetVector ("_PatternAtlasTiles", patternTiles); // pass which pattern tile you want to you
+```
+
+Now in the material you only need to set the tint colors for the Red, Green and Blue channels. All the other material values will be over-written by the script.
 
 ![Dual texture atlas tint settings](Readme-Images/Dual-Texture-Atlas-Settings.png?raw=true "Dual texture atlas tint settings")
 
 
 
-Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
+
+
+## Note! You have to make sure all your imported textures have their mesh type set to Full Rect for the Resize, Atlas and Outline shaders.
+This is because the resize, outline, and atlas shaders require access to all the uv coordinates on the sprite. If *Tight* is selected, the shader will only have access to the UV coordinates enclosed by the *Tight* mesh.
 Sprite Mode -> Mesh Type -> Full Rect
+
 ![Full rect material](Readme-Images/Full-Rect-Material.png?raw=true "Full rect material")
 
