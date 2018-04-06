@@ -80,13 +80,33 @@ If you want the top left pattern, you need to specify tile position (0,0).
 
 if you want the bottom left pattern, you can need to specify tile position (0,1).
 
+This shader requires a script to set some of the shader values. You need to specify the pattern (second) atlas texture and which tile to use from the atlas. Pass the Sprite the shader material is on, the pattern texture, and which tile you want to your script:
+```
+	public Vector4 patternTiles;
+	public GameObject sprite;
+	public Texture2D patternTexture;
+```
+
 ![Dual texture atlas script](Readme-Images/Dual-Texture-Atlas-Script.png?raw=true "Dual texture atlas tint script")
+
+Then somewhere in your script (I used Start()) pass the values on to the shader:
+
+```
+		SpriteRenderer renderer = sprite.GetComponent<SpriteRenderer> (); // grab the SpriteRenderer from your Sprite game object
+		if (patternTexture) {
+			renderer.material.SetTexture ("_PatternTex", patternTexture); // pass the pattern texture to the shader
+		}
+		renderer.material.SetVector ("_PatternAtlasTiles", patternTiles); // pass which pattern tile you want to you
+```
+
+Now in the material you only need to set the tint colors for the Red, Green and Blue channels. All the other material values will be over-written by the script.
 
 ![Dual texture atlas tint settings](Readme-Images/Dual-Texture-Atlas-Settings.png?raw=true "Dual texture atlas tint settings")
 
 
 
 ## Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
+This is because the resize, outline, and atlas shaders require access to all the uv coordinates on the sprite. If *Tight* is selected, the shader will only have access to the UV coordinates enclosed by the *Tight* mesh.
 Sprite Mode -> Mesh Type -> Full Rect
 
 ![Full rect material](Readme-Images/Full-Rect-Material.png?raw=true "Full rect material")
