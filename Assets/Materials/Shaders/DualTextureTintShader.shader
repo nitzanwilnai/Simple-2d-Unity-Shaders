@@ -6,7 +6,7 @@
         // we have removed support for texture tiling/offset,
         // so make them not be displayed in material inspector
         [NoScaleOffset] _MainTex ("Texture", 2D) = "white" {}
-        [NoScaleOffset] _PatternTex ("Texture", 2D) = "white" {}
+        [NoScaleOffset] _PatternTex ("Texture", 2D) = "white" {} // our secondary, pattern texture
  		_ColorRedTint ("Red Color Tint", Color) = (1,1,1)
 		_ColorGreenTint ("Green Color Tint", Color) = (1,1,1)
 		_ColorBlueTint ("Blue Color Tint", Color) = (1,1,1)
@@ -72,8 +72,6 @@
                  return o;
             }
 
-            // pixel shader; returns low precision ("fixed4" type)
-            // color ("SV_Target" semantic)
             fixed4 frag (v2f pix) : SV_Target
             {
                 // sample texture and return it
@@ -84,7 +82,9 @@
 
                 if(newColor.a != 0) {
 
+                	// calculate the new tinted color of the original pixel
 	                fixed3 tintedColor = col.r * _ColorRedTint + col.g * _ColorGreenTint + col.b * _ColorBlueTint;
+	                //replace it with the tinted color from the pattern, if the pattern alpha is greater than 0
 	                newColor.rgb = pattern.a != 0 ? (pattern.r * _ColorRedTint + pattern.g * _ColorGreenTint + pattern.b * _ColorBlueTint) : tintedColor.rgb;
 				}
 
