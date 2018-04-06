@@ -105,7 +105,9 @@ Now in the material you only need to set the tint colors for the Red, Green and 
 
 
 
-## Note! You have to make sure all your imported textures have their mesh type set to Full Rect.
+
+
+## Note! You have to make sure all your imported textures have their mesh type set to Full Rect for the Resize, Atlas and Outline shaders.
 This is because the resize, outline, and atlas shaders require access to all the uv coordinates on the sprite. If *Tight* is selected, the shader will only have access to the UV coordinates enclosed by the *Tight* mesh.
 Sprite Mode -> Mesh Type -> Full Rect
 
